@@ -1,6 +1,11 @@
 <template>
   <div>
-  <p> TodoList</p>
+  <div class="app-header">
+  <h3 class="app-header-date"> <span style="font-weight:900">Thursday</span>, 10th</h3>
+  <p class="header-month">December</p>
+
+  
+  </div>
     <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
   <div v-for="(todo, index) in todos" :key="todo.id" class="todo-item">
   <div class="todo-item-left">
@@ -91,9 +96,29 @@ export default {
 </script>
 
 
-<style lang="scss" >
+<style lang="scss"  >
+.app-header{
+    height:100%;
+   
+}
+.app-header-date{
+    color:#7073fb;
+  float:left;
+  margin-left:5%;
+
+}
+
+.header-month{
+    font-size:25px;
+       color:grey;
+       
+       float:left;
+       margin-top:67px;
+       margin-left:-35.5%;
+  
+}
 .todo-input{
-    width:100%;
+    width:99%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
@@ -138,6 +163,7 @@ export default {
     .completed{
         text-decoration: line-through;
         color:grey;
+        opacity:0.5;
     }
 }
 </style>
