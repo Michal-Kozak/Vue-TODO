@@ -78,7 +78,7 @@ export default {
               id: this.idForTodo,
               title: this.newTodo,
               completed: false,
-            
+              
               
             
           })
@@ -114,7 +114,7 @@ export default {
 </script>
 
 
-<style lang="scss"  >
+<style lang="scss" scoped >
 .app-header{
     position: relative;
     height:170px;
@@ -157,8 +157,8 @@ export default {
 }
 
 .header-addtask-btn{
-    background-color: white;
-    background-repeat:no-repeat;
+    background-color:transparent;
+    
     border: none;
     cursor:pointer;
     overflow: hidden;

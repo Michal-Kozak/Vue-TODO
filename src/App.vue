@@ -32,6 +32,7 @@ body{
   border-radius: 15px;
   background-color: #fefeff;
   max-width:500px;
+  min-width: 400px;
   margin: 0 auto;
 }
 #app {
