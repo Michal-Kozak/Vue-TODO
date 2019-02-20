@@ -23,9 +23,12 @@
     <div class="todo-list"> 
  <div v-for="(todo, index) in todos" :key="todo.id" class="todo-item">
   <div class="todo-item-left">
-  <input type="checkbox" v-model="todo.completed">
-  <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{completed : todo.completed}">{{todo.title}}</div>
+  <div  >
+  <button class="checkbox-btn" v-on:click="iscompleted = !iscompleted" ></button>
+ 
+  <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{iscompleted: iscompleted}" >{{todo.title}}</div>
   <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
+  </div>
   </div>
   <div class="remove-item" @click="removeTodo(index)">
   &times;
@@ -42,6 +45,7 @@ export default {
   data (){
     return{
         seen: false,
+        iscompleted: false,
         newTodo:'',
         idForTodo:3,
         beforeEditCasche: '',
@@ -49,13 +53,13 @@ export default {
             {
                 'id': 1,
                 'title': 'Finish vue Screencast',
-                'completed': false,
+                'iscompleted': false,
                 'editing': false,
             },
             {
                'id': 2,
                 'title': 'smth',
-                'completed': false, 
+                'iscompleted': false, 
                 'editing': false,
             }
         ]
@@ -81,7 +85,7 @@ export default {
            
               id: this.idForTodo,
               title: this.newTodo,
-              completed: false,
+              iscompleted: false,
               
               
             
@@ -198,7 +202,14 @@ export default {
         outline:0;
     }
     }
-    
+    .checkbox-btn{
+        border: 2px solid black;
+        border-radius:5px;
+        height:25px;
+        width:25px;
+        background-color:rgba(128, 128, 128,0.0);
+        margin-left:15px;
+    }
     .todo-item{
         margin-bottom:8px;
         display:flex;
@@ -243,7 +254,7 @@ export default {
             outline:none;
         }
     }
-    .completed{
+    .iscompleted{
         text-decoration: line-through;
         
         color:grey;
@@ -256,7 +267,7 @@ export default {
   transition: all 1s ease ;
 }
 .slide-fade-leave-active {
-  transition: all 1s ease ;
+ 
 }
 .slide-fade-enter, 
 /* .slide-fade-leave-active below version 2.1.8 */ {
@@ -264,7 +275,7 @@ export default {
   opacity:0;
 }
 .slide-fade-leave-to{
-  transform: translatey(-60%);
+  opacity:0
   
 
 }
