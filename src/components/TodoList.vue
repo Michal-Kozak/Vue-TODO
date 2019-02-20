@@ -7,8 +7,9 @@
   <p class="h-month">December</p>
   <hr class="header-hr">
     <div class="header-addtask">
+    
     <button class="header-addtask-btn" v-on:click="seen = !seen"  >
-    <svg class="svg-plus" xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+    <svg class="svg-plus" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"/>
     </svg>
     </button>
     </div>
@@ -17,8 +18,10 @@
 
   
   </div>
-    <input type="text"  class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >   
-  <div v-for="(todo, index) in todos" :key="todo.id" class="todo-item">
+  <transition name="slide-fade">
+    <input type="text"  class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  > </transition>
+    <div class="todo-list"> 
+ <div v-for="(todo, index) in todos" :key="todo.id" class="todo-item">
   <div class="todo-item-left">
   <input type="checkbox" v-model="todo.completed">
   <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{completed : todo.completed}">{{todo.title}}</div>
@@ -29,6 +32,7 @@
   </div>
   </div>
   </div>
+  </div> 
   
 </template>
 
@@ -118,7 +122,7 @@ export default {
 .app-header{
     position: relative;
     height:170px;
-   
+   color:#fbfbff;
    
 }
 .app-header-date{
@@ -126,7 +130,7 @@ export default {
  position: absolute;
    top: 10px;
   left:30px;
- 
+ opacity:0.95;
 
 }
 .task-n{
@@ -137,7 +141,7 @@ export default {
         position: absolute;
    top:35px;
    right: 50px;
-   
+   opacity:0.9;
 }
 
 .h-month{
@@ -146,7 +150,7 @@ export default {
         position: absolute;
    top: 55px;
    left:35px;
-   
+   opacity:0.9;
 }
 .header-hr{
   border: 0.7px solid grey;
@@ -157,45 +161,57 @@ export default {
 }
 
 .header-addtask-btn{
-    background-color:transparent;
-    
+    position:absolute;
+    bottom:7px;
+    right:35px;
+    background-color:#fb6a6b;
+    border-radius: 50%;
+    height: 50px;
+  width: 50px;
     border: none;
     cursor:pointer;
     overflow: hidden;
+    z-index: 1;
     &:focus{
         outline:0;
-    }  
+    }
+    
+    
     }    
     .svg-plus{
-        position:absolute;
-        fill:red;
-        bottom:2.5px;
-        right:30px;
-        background-color:white;
-        &:visited{
-            fill:green;
-        }
-
+        fill:white;
     }
 .todo-input{
-    width:80%;
+    width:85%;
     padding: 10px 18px;
     font-size: 18px;
     margin-top:10px;
-    margin-bottom: 16px;
+    margin-bottom: 35px;
     border:2px solid #ccc; 
+    border-radius:15px;
     -webkit-border-radius: 5px;
-    border-radius: px;
+    z-index: -1;
+    
+    
     
     &:focus{
         outline:0;
     }
     }
+    
     .todo-item{
-        margin-bottom:12px;
+        margin-bottom:8px;
         display:flex;
         align-items:center;
         justify-content:space-between;
+         border-bottom: 1.5px solid rgba(128, 128, 128,0.3);
+         font-family: 'Titillium Web', sans-serif;
+         font-weight:400;
+         
+         &:first-child{
+             margin-top:-20px;
+         }
+        
     .remove-item{
         cursor:pointer;
         margin-left:14px;
@@ -206,10 +222,13 @@ export default {
     .todo-item-left{
         display:flex;
         align-items:center;
+        position:relative;
+        
+        
     }
     .todo-item-label{
         padding:10px;
-        border: 1px solid whithe;
+        border: 1px solid white;
         margin-left:12px;
     }
     .todo-item-edit{
@@ -226,8 +245,28 @@ export default {
     }
     .completed{
         text-decoration: line-through;
+        
         color:grey;
         opacity:0.5;
     }
 }
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600');
+.slide-fade-enter-active {
+  transition: all 1s ease ;
+}
+.slide-fade-leave-active {
+  transition: all 1s ease ;
+}
+.slide-fade-enter, 
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translatey(-80%);
+  opacity:0;
+}
+.slide-fade-leave-to{
+  transform: translatey(-60%);
+  
+
+}
+
 </style>
