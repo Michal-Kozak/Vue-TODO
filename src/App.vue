@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app-container">
     <div class="container">
-    
+      
     <todo-list></todo-list>
     </div>
   </div>
@@ -31,7 +31,7 @@ body{
   border: 10px ;
   border-radius: 15px;
   background-color: #fefeff;
-  max-width:600px;
+  max-width:500px;
   margin: 0 auto;
 }
 #app {
