@@ -92,6 +92,7 @@ export default {
               id: this.idForTodo,
               title: this.newTodo,
               iscompleted: false,
+              editing: false,
               
               
             
