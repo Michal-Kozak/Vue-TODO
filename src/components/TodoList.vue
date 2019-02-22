@@ -25,9 +25,8 @@
   <div class="todo-item-left">
   <div >
   
-  <button class="checkbox-btn" v-on:click="todo.iscompleted = !todo.iscompleted" >
-   
-  <svg style="opacity:0;"  :class="{svgcheck:todo.iscompleted}" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path xmlns="http://www.w3.org/2000/svg" d="M18.71,7.21a1,1,0,0,0-1.42,0L9.84,14.67,6.71,11.53A1,1,0,1,0,5.29,13l3.84,3.84a1,1,0,0,0,1.42,0l8.16-8.16A1,1,0,0,0,18.71,7.21Z"/></svg>
+  <button class="checkbox-btn" v-on:click="todo.iscompleted = !todo.iscompleted" :class="{svgcheck:todo.iscompleted}" >
+    <svg class="checkmark" :class="{svgcheck:todo.iscompleted}" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"> <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>   
        </button> 
  
   <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{iscompleted:todo.iscompleted}" >{{todo.title}}</div>
@@ -196,13 +195,16 @@ export default {
     
     .svgcheck{
         opacity:1 !important;
+        background-color:#fb6c6d !important;
+        
+        
+    
+    }
+    .checkmark{
+        opacity:0;
         fill:white;
-        height:25px;
-        width:25px;
-        transform:scale(2.8);
-        padding-bottom:2px;
-    
-    
+        transform:scale(1.5);
+
     }
 .todo-input{
     width:85%;
@@ -225,15 +227,15 @@ export default {
     .checkbox-btn{
         display:flex;
         border: 2px solid rgba(128,128,128,0.8);
-        border-radius:5px;
+        border-radius:8px;
         height:25px;
         width:25px;
-        background-color:#fb6c6d;
-        bottom:0;
+        background-color:rgba(128,128,128,0.12);
         float:left;
         margin-left:-10px;
         margin-right:15px;
         margin-top:7px;
+        
     }
     .btn-div{
         outline: 0;
