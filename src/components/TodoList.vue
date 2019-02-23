@@ -226,6 +226,7 @@ export default {
     }
     .checkbox-btn{
         display:flex;
+        
         border: 2px solid rgba(128,128,128,0.8);
         border-radius:8px;
         height:25px;
@@ -287,12 +288,17 @@ export default {
         
     }
     .todo-item-edit{
-        font-size:24px;
+        display:flex;
+        
+        font-size:28px;
+        padding-left:10px;
         color: #2c3e50;
-        margin-left:12px;
-        width:100%;
-        padding:10px;
-        border:1px solid #cc;
+        font-family: 'Titillium Web', sans-serif;
+        width:90%;
+        
+        border:2px solid #ccc;
+        border-radius:5px;
+        
         
         &:focus{
             outline:none;
@@ -300,9 +306,9 @@ export default {
     }
     .iscompleted{
         text-decoration: line-through;
-        
+        text-decoration:uppercase;
         color:grey;
-        opacity:0.5;
+        opacity:0.7;
         
     }
     
