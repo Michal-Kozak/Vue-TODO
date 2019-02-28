@@ -3,7 +3,7 @@
   <div class="app-header">
 
   <h3 class="app-header-date"> <span style="font-weight:900">Thursday</span>, 10th</h3>
-  <p class="task-n">12 Tasks</p>
+  <p class="task-n">{{remaining}} Tasks</p>
   <p class="h-month">December</p>
   <hr class="header-hr">
     <div class="header-addtask">
@@ -34,7 +34,9 @@
   </div>
   </div>
   <div class="remove-item" @click="removeTodo(index)">
-  <p class="datetest">8:00   AM</p>
+   
+  <svg class="svg-delete" :class="{showdelete:todo.iscompleted}" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M19,11H5a1,1,0,0,0,0,2H19a1,1,0,0,0,0-2Z"/> </svg>
+
   </div>
   </div>
   </div>
@@ -56,14 +58,12 @@ export default {
             {
                 'id': 1,
                 'title': 'Finish vue Screencast',
-                'completed': false,
                 'editing': false,
                 'iscompleted': false,
             },
             {
                'id': 2,
                 'title': 'smth',
-                'completed': false, 
                 'editing': false,
                 'iscompleted': false,
             }
@@ -71,7 +71,11 @@ export default {
     }
     
   },
-  
+  computed:{
+      remaining(){
+          return this.todos.filter(todo => !todo.iscompleted).length
+      }
+  },
   directives:{
       focus:{
           inserted: function(el){
@@ -200,12 +204,30 @@ export default {
         
     
     }
+    .showdelete{
+        opacity:1 !important;
+    }
     .checkmark{
         opacity:0;
         fill:white;
         transform:scale(1.5);
 
     }
+    .svg-delete{
+        opacity:0;
+        fill:grey;
+        border:2px solid #fb6c6d;
+        border-radius:50%;
+         &:hover{
+            fill:white;
+            background-color:#fb6c6d;
+        }
+        .showdelete{
+            
+        }
+        
+    }
+  
 .todo-input{
     width:85%;
     padding: 10px 18px;
@@ -227,7 +249,7 @@ export default {
     .checkbox-btn{
         display:flex;
         
-        border: 2px solid rgba(128,128,128,0.8);
+        border: 1px solid rgba(128,128,128,0.8);
         border-radius:8px;
         height:25px;
         width:25px;
@@ -264,14 +286,11 @@ export default {
         
     .remove-item{
         cursor:pointer;
-        font-family: 'Titillium Web', sans-serif;
-        font-weight:300;
-        font-size:17px;
-        padding:6px;
-        margin-right:20px;
-        &:hover{
-            color:black;
-        }
+
+        padding:4px;
+        margin-top:5px;
+        margin-right:10px;
+        
     }
     .todo-item-left{
         position:relative;
