@@ -20,9 +20,9 @@
   
   </div>
   
-    <input type="text"  class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >
+    <input type="text" maxlength="35" class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >
     <div class="todo-list" > 
- <todo-item v-for="(todo, index) in todos" :key="todo.id" class="todo-item" :todo="todo" :index="index" @removedTodo='removeTodo'>
+ <todo-item v-for="(todo, index) in todos" :key="todo.id" class="todo-item" :todo="todo" :index="index" @removedTodo='removeTodo' @finishedEdit="finishedEdit">
   <TodoItem></TodoItem>
  </todo-item>
   </div>
@@ -48,7 +48,7 @@ export default {
         todos:[
             {
                 'id': 1,
-                'title': 'Finish vue Screencast',
+                'title': 'Do homework',
                 'editing': false,
                 'iscompleted': false,
             },
@@ -67,13 +67,7 @@ export default {
           return this.todos.filter(todo => !todo.iscompleted).length
       }
   },
-  directives:{
-      focus:{
-          inserted: function(el){
-              el.focus()
-          }
-      }
-  },
+  
   methods:{
       addTodo(){
 
@@ -102,7 +96,7 @@ export default {
       },
       
       doneEdit(todo){
-           if (todo.title.trim().length == 0){
+           if (todo.title.trim() == ''){
                 todo.title = this.beforeEditCasche
             }
           todo.editing = false
@@ -117,7 +111,8 @@ export default {
       },
       removeTodo(index){
           this.todos.splice(index,1)
-      }
+      },
+     
   }
 }
 </script>

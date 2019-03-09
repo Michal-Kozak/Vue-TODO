@@ -7,10 +7,10 @@
     <svg class="checkmark" :class="{svgcheck:todo.iscompleted}" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"> <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>   
        </button> 
  
-  <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{iscompleted:todo.iscompleted}" >{{todo.title}}
+  <div v-if="!editing" @dblclick="editTodo" class="todo-item-label" :class="{iscompleted:todo.iscompleted}" >{{todo.title}}
       
   </div>
-  <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
+  <input  v-else class="todo-item-edit" type="text" maxlength="35" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
   </div>
   </div>
   <div class="remove-item" @click="removeTodo(index)">
@@ -38,15 +38,42 @@ export default {
                 'id': this.todo.id,
                 'title': this.todo.title,
                 'iscompleted': this.todo.completed,
+                'editing': this.todo.editing,
                 'beforeEditCache': '',
             }
         },
         methods:{
             removeTodo(index){
                 this.$emit('removedTodo', index)
+            },
+            editTodo(){
+            this.beforeEditCache = this.title
+            this.editing = true;
+        
+      },
+      doneEdit(){
+           if (this.title.trim() == ''){
+                this.title = this.beforeEditCache
             }
+          this.editing = false
+
+      
+
+      },
+      cancelEdit(){
+          this.title = this.beforeEditCache
+          this.editing = false
+        },
+        },
+        directives:{
+      focus:{
+          inserted: function(el){
+              el.focus()
+          }
+      }
+  },
         }
-}
+
 </script>
 <style lang="scss" scoped >  
     .svgcheck{
