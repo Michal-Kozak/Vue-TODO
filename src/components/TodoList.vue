@@ -22,7 +22,7 @@
   
     <input type="text"  class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >
     <div class="todo-list" > 
- <todo-item v-for="(todo, index) in todos" :key="todo.id" class="todo-item" :todo="todo" :index="index">
+ <todo-item v-for="(todo, index) in todos" :key="todo.id" class="todo-item" :todo="todo" :index="index" @removedTodo='removeTodo'>
   <TodoItem></TodoItem>
  </todo-item>
   </div>
@@ -187,6 +187,22 @@ export default {
     .svg-plus{
         fill:white;
     }
+    .todo-input{
+    width:85%;
+    padding: 10px 18px;
+    font-size: 18px;
+    margin-top:3px;
+    margin-bottom: 45px;
+    border:2px solid #ccc; 
+    border-radius:15px;
+    -webkit-border-radius: 5px;
+    z-index: -1;
+    
+    
+    
+    &:focus{
+        outline:0;
+    }}
     
 
     .btn-div{

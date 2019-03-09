@@ -32,7 +32,20 @@ export default {
             type: Number,
             required: true,
         }
-    }
+    },
+        data(){
+            return{
+                'id': this.todo.id,
+                'title': this.todo.title,
+                'iscompleted': this.todo.completed,
+                'beforeEditCache': '',
+            }
+        },
+        methods:{
+            removeTodo(index){
+                this.$emit('removedTodo', index)
+            }
+        }
 }
 </script>
 <style lang="scss" scoped >  
@@ -62,26 +75,6 @@ export default {
             background-color:#fb6c6d;
         }
         
-        
-    }
-  
-.todo-input{
-    width:85%;
-    padding: 10px 18px;
-    font-size: 18px;
-    margin-top:3px;
-    margin-bottom: 45px;
-    border:2px solid #ccc; 
-    border-radius:15px;
-    -webkit-border-radius: 5px;
-    z-index: -1;
-    
-    
-    
-    &:focus{
-        outline:0;
-    }
-   
     }
     .checkbox-btn{
         display:flex;
