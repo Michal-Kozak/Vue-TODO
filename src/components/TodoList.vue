@@ -1,4 +1,5 @@
 <template>
+
   <div>
   <div class="app-header">
 
@@ -45,8 +46,13 @@
 </template>
 
 <script>
+    import TodoItem from './TodoItem'
+
 export default {
   name: 'todo-list',
+  components: {
+    TodoItem
+  },
   data (){
     return{  
         seen: false,

@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="app-container">
     <div class="container">
-      
     <todo-list></todo-list>
     </div>
   </div>
