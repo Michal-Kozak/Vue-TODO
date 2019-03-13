@@ -10,7 +10,7 @@
             <div v-if="!editing" @dblclick="editTodo" class="todo-item-label" :class="{iscompleted:todo.iscompleted}">{{todo.title}}
 
             </div>
-            <input  v-else class="todo-item-edit" type="text" maxlength="35" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
+            <input  v-else class="todo-item-edit" type="text" maxlength="25" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
   </div>
         </div>
         <div class="remove-item" @click="removeTodo(index)">

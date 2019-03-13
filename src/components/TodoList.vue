@@ -16,7 +16,7 @@
 
     </div>
 
-    <input type="text" maxlength="35" class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >
+    <input type="text" maxlength="25" class="todo-input" v-if="seen" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo"  >
     <div class="todo-list">
         <todo-item v-for="(todo, index) in todos" :key="todo.id" class="todo-item" :todo="todo" :index="index" @removedTodo='removeTodo' @finishedEdit="finishedEdit">
             <TodoItem></TodoItem>
